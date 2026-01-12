@@ -6,6 +6,10 @@
   <title>JG Core</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -14,6 +18,7 @@
       display: flex;
       justify-content: center;
       padding: 32px 16px;
+      line-height: 1.5;
     }
 
     .wrap {
@@ -21,137 +26,419 @@
       width: 100%;
     }
 
+    /* Header */
+    header {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(160,174,192,0.15);
+    }
+
     h1 {
-      font-size: 42px;
-      margin-bottom: 6px;
+      font-size: 36px;
+      margin: 0 0 6px 0;
+      font-weight: 600;
     }
 
     .tagline {
-      color: #A0AEC0;
-      font-size: 18px;
-      margin-bottom: 32px;
-    }
-
-    .section-title {
-      margin-top: 48px;
-      margin-bottom: 16px;
-      font-size: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: #111111;
-      border: 1px solid rgba(160,174,192,0.2);
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .card h2 {
-      margin: 0 0 8px 0;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      font-size: 12px;
-      border: 1px solid rgba(160,174,192,0.3);
-      padding: 3px 10px;
-      border-radius: 999px;
-      color: #A0AEC0;
-    }
-
-    p {
-      color: #A0AEC0;
-      line-height: 1.6;
+      color: #8896A6;
+      font-size: 16px;
       margin: 0;
     }
 
+    /* Legend */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #8896A6;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(160,174,192,0.1);
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6B7785;
+      margin: 0;
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: #4A5568;
+      background: rgba(160,174,192,0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    /* Cards */
+    .card {
+      background: #111111;
+      border: 1px solid rgba(160,174,192,0.12);
+      border-radius: 10px;
+      padding: 16px 18px;
+      transition: border-color 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(160,174,192,0.25);
+    }
+
+    .card.focus {
+      border-left: 3px solid #F6AD55;
+      background: linear-gradient(90deg, rgba(246,173,85,0.04) 0%, transparent 40%);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #F7FAFC;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .card-desc {
+      color: #8896A6;
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* Pills and Badges */
+    .pill {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-private {
+      background: rgba(160,174,192,0.12);
+      color: #8896A6;
+    }
+
+    .pill-public {
+      background: rgba(72,187,120,0.15);
+      color: #68D391;
+    }
+
+    /* Status Indicators */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .status-active .status-dot { background: #48BB78; }
+    .status-active { background: rgba(72,187,120,0.12); color: #68D391; }
+
+    .status-paused .status-dot { background: #ECC94B; }
+    .status-paused { background: rgba(236,201,75,0.12); color: #ECC94B; }
+
+    .status-idea .status-dot { background: #63B3ED; }
+    .status-idea { background: rgba(99,179,237,0.12); color: #63B3ED; }
+
+    .status-archived .status-dot { background: #718096; }
+    .status-archived { background: rgba(113,128,150,0.12); color: #A0AEC0; }
+
+    /* Focus Badge */
+    .focus-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 7px;
+      border-radius: 4px;
+      background: rgba(246,173,85,0.15);
+      color: #F6AD55;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      margin-top: 56px;
-      font-size: 12px;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(160,174,192,0.1);
+      font-size: 13px;
+      color: #6B7785;
+    }
+
+    footer a {
+      color: #8896A6;
+      text-decoration: none;
+    }
+
+    footer a:hover {
       color: #A0AEC0;
     }
 
-    a {
-      color: #A0AEC0;
-      text-decoration: none;
+    /* Mobile */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 14px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .card-meta {
+        order: -1;
+      }
+
+      .legend {
+        gap: 8px 16px;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <h1>JG Core</h1>
-    <p class="tagline">Living inventory of projects in development.</p>
+    <header>
+      <h1>JG Core</h1>
+      <p class="tagline">Living inventory of projects in development</p>
 
-    <h2 class="section-title">Core Platforms</h2>
-    <div class="grid">
-      <div class="card">
-        <h2>jgcore-platform <span class="pill">Private</span></h2>
-        <p>Primary personal finance intelligence platform. Dashboards, automation, and long-horizon planning.</p>
+      <div class="legend">
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#48BB78"></span> Active
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#ECC94B"></span> Paused
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#63B3ED"></span> Idea
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background:#718096"></span> Archived
+        </div>
+        <div class="legend-item">
+          <span style="color:#F6AD55">&#9670;</span> Focus
+        </div>
       </div>
+    </header>
 
-      <div class="card">
-        <h2>jgcore <span class="pill">Private</span></h2>
-        <p>Internal shared components, architectural work, and experiments.</p>
+    <!-- ==================== CORE PLATFORMS ==================== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Core Platforms</h2>
+        <span class="section-count">2</span>
       </div>
-    </div>
+      <div class="grid">
 
-    <h2 class="section-title">Finance & Automation</h2>
-    <div class="grid">
-      <div class="card">
-        <h2>YieldEngine <span class="pill">Private</span></h2>
-        <p>Automated yield capture, aggregation, reporting, and operational safety checks.</p>
-      </div>
+        <div class="card focus">
+          <div class="card-header">
+            <h3 class="card-title">jgcore-platform</h3>
+            <div class="card-meta">
+              <span class="focus-badge">Focus</span>
+              <span class="status status-active"><span class="status-dot"></span>Active</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">Primary personal finance intelligence platform. Dashboards, automation, and long-horizon planning.</p>
+        </div>
 
-      <div class="card">
-        <h2>JG Financial Tracker <span class="pill">Private</span></h2>
-        <p>Cashflow, liabilities, burn-rate tracking, and forward projections.</p>
-      </div>
-    </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">jgcore</h3>
+            <div class="card-meta">
+              <span class="status status-active"><span class="status-dot"></span>Active</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">Internal shared components, architectural work, and experiments.</p>
+        </div>
 
-    <h2 class="section-title">Property & Civic</h2>
-    <div class="grid">
-      <div class="card">
-        <h2>core-re <span class="pill">Private</span></h2>
-        <p>UK-first property intelligence and analysis platform.</p>
       </div>
+    </section>
 
-      <div class="card">
-        <h2>civic-core-institute <span class="pill">Private</span></h2>
-        <p>UK civic-tech platform mapping governance, institutions, and public systems.</p>
+    <!-- ==================== FINANCE & AUTOMATION ==================== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Finance &amp; Automation</h2>
+        <span class="section-count">2</span>
       </div>
-    </div>
+      <div class="grid">
 
-    <h2 class="section-title">Career & Ops</h2>
-    <div class="grid">
-      <div class="card">
-        <h2>core-careers <span class="pill">Private</span></h2>
-        <p>Career workflow management and long-term decision tooling.</p>
-      </div>
-    </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">YieldEngine</h3>
+            <div class="card-meta">
+              <span class="status status-active"><span class="status-dot"></span>Active</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">Automated yield capture, aggregation, reporting, and operational safety checks.</p>
+        </div>
 
-    <h2 class="section-title">Web & Presence</h2>
-    <div class="grid">
-      <div class="card">
-        <h2>joshuacore.github.io <span class="pill">Public</span></h2>
-        <p>This site. High-level project visibility and orientation.</p>
-      </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">JG Financial Tracker</h3>
+            <div class="card-meta">
+              <span class="status status-active"><span class="status-dot"></span>Active</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">Cashflow, liabilities, burn-rate tracking, and forward projections.</p>
+        </div>
 
-      <div class="card">
-        <h2>jgcore-landing <span class="pill">Public</span></h2>
-        <p>Legacy “coming soon” landing page.</p>
       </div>
-    </div>
+    </section>
+
+    <!-- ==================== PROPERTY & CIVIC ==================== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Property &amp; Civic</h2>
+        <span class="section-count">2</span>
+      </div>
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">core-re</h3>
+            <div class="card-meta">
+              <span class="status status-idea"><span class="status-dot"></span>Idea</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">UK-first property intelligence and analysis platform.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">civic-core-institute</h3>
+            <div class="card-meta">
+              <span class="status status-idea"><span class="status-dot"></span>Idea</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">UK civic-tech platform mapping governance, institutions, and public systems.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CAREER & OPS ==================== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Career &amp; Ops</h2>
+        <span class="section-count">1</span>
+      </div>
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">core-careers</h3>
+            <div class="card-meta">
+              <span class="status status-paused"><span class="status-dot"></span>Paused</span>
+              <span class="pill pill-private">Private</span>
+            </div>
+          </div>
+          <p class="card-desc">Career workflow management and long-term decision tooling.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== WEB & PRESENCE ==================== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Web &amp; Presence</h2>
+        <span class="section-count">2</span>
+      </div>
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">joshuacore.github.io</h3>
+            <div class="card-meta">
+              <span class="status status-active"><span class="status-dot"></span>Active</span>
+              <span class="pill pill-public">Public</span>
+            </div>
+          </div>
+          <p class="card-desc">This site. High-level project visibility and orientation.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">jgcore-landing</h3>
+            <div class="card-meta">
+              <span class="status status-archived"><span class="status-dot"></span>Archived</span>
+              <span class="pill pill-public">Public</span>
+            </div>
+          </div>
+          <p class="card-desc">Legacy "coming soon" landing page.</p>
+        </div>
+
+      </div>
+    </section>
 
     <footer>
       Contact: <a href="mailto:info@jgcore.com">info@jgcore.com</a>
