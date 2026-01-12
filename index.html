@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JG Core</title>
+
   <style>
     body {
       margin: 0;
@@ -14,73 +15,141 @@
       justify-content: center;
       padding: 32px 16px;
     }
-    .wrap { max-width: 1000px; width: 100%; }
-    h1 { font-size: 42px; margin-bottom: 8px; }
-    .tagline { color: #A0AEC0; font-size: 18px; }
+
+    .wrap {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      color: #A0AEC0;
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      margin-top: 48px;
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 16px;
-      margin-top: 32px;
     }
+
     .card {
-      background: #111;
-      border: 1px solid rgba(160,174,192,.2);
+      background: #111111;
+      border: 1px solid rgba(160,174,192,0.2);
       border-radius: 14px;
       padding: 18px;
     }
+
+    .card h2 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .pill {
       font-size: 12px;
-      border: 1px solid rgba(160,174,192,.3);
+      border: 1px solid rgba(160,174,192,0.3);
       padding: 3px 10px;
       border-radius: 999px;
       color: #A0AEC0;
-      margin-left: 8px;
     }
-    p { color: #A0AEC0; line-height: 1.6; }
+
+    p {
+      color: #A0AEC0;
+      line-height: 1.6;
+      margin: 0;
+    }
+
     footer {
       text-align: center;
-      margin-top: 32px;
+      margin-top: 56px;
       font-size: 12px;
       color: #A0AEC0;
     }
-    a { color: #A0AEC0; text-decoration: none; }
+
+    a {
+      color: #A0AEC0;
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <h1>JG Core</h1>
-    <p class="tagline">Projects in development.</p>
+    <p class="tagline">Living inventory of projects in development.</p>
 
+    <h2 class="section-title">Core Platforms</h2>
     <div class="grid">
       <div class="card">
-        <h2>core-re <span class="pill">Private</span></h2>
-        <p>UK-first property intelligence platform.</p>
-      </div>
-
-      <div class="card">
-        <h2>core-careers <span class="pill">Private</span></h2>
-        <p>Career workflow and planning platform.</p>
-      </div>
-
-      <div class="card">
         <h2>jgcore-platform <span class="pill">Private</span></h2>
-        <p>Personal finance intelligence dashboards.</p>
-      </div>
-
-      <div class="card">
-        <h2>civic-core-institute <span class="pill">Private</span></h2>
-        <p>UK civic-tech mapping and governance tools.</p>
+        <p>Primary personal finance intelligence platform. Dashboards, automation, and long-horizon planning.</p>
       </div>
 
       <div class="card">
         <h2>jgcore <span class="pill">Private</span></h2>
-        <p>Internal shared platform components.</p>
+        <p>Internal shared components, architectural work, and experiments.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Finance & Automation</h2>
+    <div class="grid">
+      <div class="card">
+        <h2>YieldEngine <span class="pill">Private</span></h2>
+        <p>Automated yield capture, aggregation, reporting, and operational safety checks.</p>
+      </div>
+
+      <div class="card">
+        <h2>JG Financial Tracker <span class="pill">Private</span></h2>
+        <p>Cashflow, liabilities, burn-rate tracking, and forward projections.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Property & Civic</h2>
+    <div class="grid">
+      <div class="card">
+        <h2>core-re <span class="pill">Private</span></h2>
+        <p>UK-first property intelligence and analysis platform.</p>
+      </div>
+
+      <div class="card">
+        <h2>civic-core-institute <span class="pill">Private</span></h2>
+        <p>UK civic-tech platform mapping governance, institutions, and public systems.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Career & Ops</h2>
+    <div class="grid">
+      <div class="card">
+        <h2>core-careers <span class="pill">Private</span></h2>
+        <p>Career workflow management and long-term decision tooling.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Web & Presence</h2>
+    <div class="grid">
+      <div class="card">
+        <h2>joshuacore.github.io <span class="pill">Public</span></h2>
+        <p>This site. High-level project visibility and orientation.</p>
       </div>
 
       <div class="card">
         <h2>jgcore-landing <span class="pill">Public</span></h2>
-        <p>Legacy landing page.</p>
+        <p>Legacy “coming soon” landing page.</p>
       </div>
     </div>
 
